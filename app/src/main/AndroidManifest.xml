@@ -13,6 +13,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.DatingApplicaction">
         <activity
+            android:name=".activity.ForgotPassword"
+            android:exported="false" />
+        <activity
+            android:name=".activity.HomeActivity"
+            android:exported="false" />
+        <activity
             android:name=".activity.Signup"
             android:exported="false" />
         <activity
