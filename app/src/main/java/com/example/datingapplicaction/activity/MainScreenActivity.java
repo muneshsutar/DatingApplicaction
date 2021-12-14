@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.Menu;
 
 import com.example.datingapplicaction.R;
+
 import com.example.datingapplicaction.databinding.ActivityMainScreenBinding;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
@@ -22,7 +23,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class MainScreenActivity extends AppCompatActivity {
 
-    View action_logout;
+
 
     FirebaseAuth firebaseAuth;
 

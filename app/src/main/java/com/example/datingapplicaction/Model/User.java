@@ -4,9 +4,22 @@ public class User {
       String name;
      String email;
       String password;
+      String uid;
 
     public User() {
 
+    }
+
+    public User(String uid) {
+        this.uid = uid;
+    }
+
+    public String getUid() {
+        return uid;
+    }
+
+    public void setUid(String uid) {
+        this.uid = uid;
     }
 
     public User(String name, String email, String password) {
