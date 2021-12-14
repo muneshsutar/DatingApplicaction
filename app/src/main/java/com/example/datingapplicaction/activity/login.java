@@ -15,6 +15,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -32,6 +33,8 @@ public class login extends AppCompatActivity {
     ImageView signin;
     Button signup;
 
+    ProgressBar loginProgress;
+
     TextView forgotPassword;
 
     FirebaseAuth firebaseAuth;
@@ -45,12 +48,13 @@ public class login extends AppCompatActivity {
         loginpassword = findViewById(R.id.loginpassword);
         signin = findViewById(R.id.signin);
         signup = findViewById(R.id.signup);
+        loginProgress = findViewById(R.id.loginProgress);
 
         forgotPassword = findViewById(R.id.forgotPassword);
         firebaseAuth = FirebaseAuth.getInstance();
 
         if (firebaseAuth.getCurrentUser() !=null){
-            Intent intent = new Intent(login.this,HomeActivity.class);
+            Intent intent = new Intent(login.this,MainScreenActivity.class);
             startActivity(intent);
             finish();
         }
@@ -68,17 +72,20 @@ public class login extends AppCompatActivity {
             String logpass = loginpassword.getText().toString();
             if (!logemail.isEmpty() && Patterns.EMAIL_ADDRESS.matcher(logemail).matches()){
                 if (!logpass.isEmpty()){
+                    loginProgress.setVisibility(View.VISIBLE);
                     firebaseAuth.signInWithEmailAndPassword(logemail,logpass).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (task.isSuccessful()){
+                                loginProgress.setVisibility(View.GONE);
                                 Toast.makeText(getApplicationContext(), "Login SuccessesFully", Toast.LENGTH_SHORT).show();
-                                Intent intent = new Intent(login.this,HomeActivity.class);
+                                Intent intent = new Intent(login.this,MainScreenActivity.class);
                                 startActivity(intent);
                                 finish();
 
 
                             }else {
+                                loginProgress.setVisibility(View.GONE);
                                 Toast.makeText(getApplicationContext(), "Wrong Credentials", Toast.LENGTH_SHORT).show();
                             }
                         }

@@ -101,14 +101,16 @@
                     android:layout_marginTop="20dp"
                     android:layout_marginLeft="30dp" />
 
-                <ImageButton
-                    android:layout_width="50dp"
+                <androidx.appcompat.widget.AppCompatButton
+                    android:layout_width="70dp"
                     android:layout_height="50dp"
                     android:layout_gravity="end"
                     android:layout_marginTop="45dp"
                     android:layout_marginEnd="25dp"
                     android:id="@+id/signup"
-                    android:src="@drawable/ic_baseline_arrow_forward_24"
+                    android:text="Login"
+                    android:textColor="@color/white"
+
                     android:background="@drawable/button_background"/>
 
 
@@ -128,7 +130,7 @@
                     android:textColor="@android:color/black"
                     android:textStyle="bold" />
 
-                <Button
+                <androidx.appcompat.widget.AppCompatButton
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"

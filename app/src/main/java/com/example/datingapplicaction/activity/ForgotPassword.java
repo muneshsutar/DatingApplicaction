@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -21,6 +22,8 @@ import com.google.firebase.auth.FirebaseAuth;
 public class ForgotPassword extends AppCompatActivity {
 
     TextView alertmessages;
+
+    ProgressBar resetProgress;
 
     EditText inputGmail;
     ImageView backArrow;
@@ -35,6 +38,7 @@ public class ForgotPassword extends AppCompatActivity {
         forgotbtn = findViewById(R.id.forgotbtn);
         backArrow = findViewById(R.id.backArrow);
         alertmessages = findViewById(R.id.alertmessages);
+        resetProgress = findViewById(R.id.resetProgress);
 
         firebaseAuth = FirebaseAuth.getInstance();
 
@@ -51,14 +55,19 @@ public class ForgotPassword extends AppCompatActivity {
             public void onClick(View v) {
                 String email = inputGmail.getText().toString().trim();
                 if (!email.isEmpty() && Patterns.EMAIL_ADDRESS.matcher(email).matches()){
+                    resetProgress.setVisibility(View.VISIBLE);
                     firebaseAuth.sendPasswordResetEmail(email).addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
                             if (task.isSuccessful()) {
-                                Toast.makeText(ForgotPassword.this, "We have sent you instructions to reset your password!", Toast.LENGTH_SHORT).show();
-                                alertmessages.setText("uy");
+                                resetProgress.setVisibility(View.GONE);
+
+                                alertmessages.setText("We have sent you instructions to reset your password!");
+
                             } else {
-                                Toast.makeText(ForgotPassword.this, "Failed to send reset email!", Toast.LENGTH_SHORT).show();
+                                resetProgress.setVisibility(View.GONE);
+                                alertmessages.setText("Failed to send reset email!");
+
                             }
                         }
                     });
